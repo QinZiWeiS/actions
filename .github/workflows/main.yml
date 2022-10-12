@@ -30,3 +30,11 @@ jobs:
       with:
        branch: test
        path: dist/
+    - uses: actions/download-artifact@v3
+      with:
+        path: dist
+
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: dist
+
