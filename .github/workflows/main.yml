@@ -26,7 +26,7 @@ jobs:
     - run: npm install
     - run: npm run build
     - name: actions/dist
-      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      uses: actions/upload-artifact@v3
       with:
        branch: test
-       folder: dist # 这里填打包好的目录名称
+       path: dist/
