@@ -25,14 +25,12 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build
-    - name: actions/dist
-      uses: actions/upload-artifact@v3
-      with:
-       branch: test
-       path: dist/
+#     - name: actions/dist
+#       uses: actions/upload-artifact@v3
+#       with:
+#        branch: test
+#        path: dist/
     - uses: actions/download-artifact@v3
-      with:
-        path: dist
 
     - name: Display structure of downloaded files
       run: ls -R
