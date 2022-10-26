@@ -24,15 +24,18 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
+    
     - run: npm run build
-#     - name: actions/dist
-#       uses: actions/upload-artifact@v3
-#       with:
-#        branch: test
-#        path: dist/
-    - uses: actions/download-artifact@v3
+    
+    - 
+      name: deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        publish_branch: asf-site
+        publish_dir: ./build
 
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: dist
 
